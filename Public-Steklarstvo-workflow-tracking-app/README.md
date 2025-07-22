@@ -23,14 +23,6 @@ Sistem omogoča pregled, obdelavo in nadzor nad fazami proizvodnje stekla: od ra
 - `utils/` – pomožne funkcije (npr. dodeljevanje sektorjev)
 - `frontend/` – React aplikacija (ločen modul)
 
-## 🔐 Varnost in zasebnost
-Ta javna različica repozitorija NE vsebuje nobenih občutljivih informacij.  
-Vsi osebni podatki, dostopi in poverilnice so bili odstranjeni.
 
 ## 📣 Namen
 Projekt je bil razvit za interno optimizacijo delovnih procesov, nadzor nad proizvodnjo in digitalizacijo v steklarstvu.
-
----
-
-🛠 Repozitorij je namenjen vpogledu v delovanje aplikacije in strukturo sistema.  
-Za dodatne informacije ali predstavitev aplikacije me lahko kontaktirate preko LinkedIn profila ali e-pošte.
