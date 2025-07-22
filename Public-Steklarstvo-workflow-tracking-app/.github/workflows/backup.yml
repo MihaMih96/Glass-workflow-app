@@ -1,0 +1,42 @@
+name: MongoDB Atlas Daily Backup
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+jobs:
+  mongodump:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Dodaj MongoDB APT-repozitorij in namesti Database Tools
+        run: |
+          wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
+          sudo apt-get update
+          sudo apt-get install -y gnupg curl
+          echo "deb [arch=amd64,arm64] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+          sudo apt-get update
+          sudo apt-get install -y mongodb-database-tools zip
+
+      - name: Ustvari mapo za backup
+        run: |
+          mkdir -p backup_output
+
+      - name: Pobrani backup iz Atlas
+        env:
+          ATLAS_URI: ${{ secrets.ATLAS_URI }}
+        run: |
+          TODAY=$(date +'%Y-%m-%d')
+          mongodump --uri "$ATLAS_URI" --out "backup_output/$TODAY"
+
+      - name: Zip backup
+        run: |
+          cd backup_output
+          zip -r "backup_$(date +'%Y-%m-%d').zip" "$(date +'%Y-%m-%d')"
+
+      - name: Shrani ZIP kot artefakt
+        uses: actions/upload-artifact@v4
+        with:
+          name: mongo-backup
+          path: backup_output/*.zip

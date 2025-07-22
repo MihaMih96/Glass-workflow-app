@@ -1,0 +1,192 @@
+.orders-page {
+  max-width: 650px;
+  margin: 36px auto;
+  padding: 26px;
+  background: #f9f9fa;
+  border-radius: 18px;
+  box-shadow: 0 2px 18px #0002;
+}
+
+.order-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.order-form input, .order-form select, .order-form button {
+  padding: 9px 12px;
+  font-size: 1em;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+.order-form button {
+  background: #007b5e;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  transition: background 0.16s;
+  cursor: pointer;
+  margin-left: 8px;
+}
+.order-form button:hover {
+  background: #005f47;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.order-card {
+  border-radius: 11px;
+  padding: 16px 22px;
+  box-shadow: 0 2px 12px #0001;
+  border-left: 7px solid #ffc107;
+  background: #fffbe8;
+  font-size: 1.07em;
+  transition: border-color 0.21s, background 0.2s;
+  margin-bottom: 1px;
+}
+.order-card.ordered {
+  border-color: #43b866;
+  background: #eaffec;
+}
+.order-card.pending {
+  border-color: #ffc107;
+  background: #fffbe8;
+}
+.order-card button {
+  margin-top: 10px;
+  padding: 7px 18px;
+  border-radius: 7px;
+  background: #ffb74d;
+  color: #fff;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.16s;
+}
+.order-card button:hover {
+  background: #ff9800;
+}
+
+.order-card-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.order-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-left: 20px;
+}
+
+.btn-edit {
+  background: #3183ef;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 16px;
+  font-weight: 600;
+  font-size: 1em;
+  margin-bottom: 3px;
+  transition: background 0.17s;
+}
+.btn-edit:hover { background: #246ad3; }
+
+.btn-delete {
+  background: #e84c4c !important;
+  color: #fff !important;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 16px;
+  font-weight: 600;
+  font-size: 1em;
+  transition: background 0.17s;
+}
+.btn-delete:hover { background: #b71c1c !important; }
+
+/* ---- POSEBEN MODAL ZA TA PAGE ---- */
+.custom-modal-backdrop {
+  position: fixed;
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.24);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  animation: modalIn 0.19s;
+}
+@keyframes modalIn {
+  from { background: rgba(0,0,0,0); }
+  to { background: rgba(0,0,0,0.24);}
+}
+.custom-modal {
+  background: #fff;
+  padding: 30px 40px 22px 40px;
+  border-radius: 17px;
+  box-shadow: 0 8px 36px rgba(0,0,0,0.14);
+  min-width: 330px;
+  text-align: center;
+  animation: modalPop 0.22s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@keyframes modalPop {
+  from { transform: scale(0.93); opacity: 0.6; }
+  to   { transform: scale(1); opacity: 1; }
+}
+.custom-modal h4 {
+  margin-bottom: 18px;
+}
+.custom-modal select {
+  margin-bottom: 24px;
+  padding: 9px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+
+/* Modal gumbi - posebne barve */
+.custom-modal .btn-confirm {
+  background: #3183ef;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 9px 28px;
+  font-weight: 600;
+  margin-right: 10px;
+  font-size: 1em;
+  transition: background 0.17s;
+}
+.custom-modal .btn-confirm:disabled { background: #a6c9fa; cursor: not-allowed;}
+.custom-modal .btn-confirm:hover:enabled { background: #246ad3; }
+
+.custom-modal .btn-cancel {
+  background: #e84c4c;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 9px 28px;
+  font-weight: 600;
+  font-size: 1em;
+  transition: background 0.17s;
+}
+.custom-modal .btn-cancel:hover { background: #b71c1c; }
+
+@media (max-width: 600px) {
+  .orders-page { padding: 8px; }
+  .custom-modal { padding: 18px 5vw 16px 5vw; min-width: 0;}
+  .custom-modal h4 { font-size: 1.1em;}
+}
+
+.order-qty {
+  font-weight: 600;
+  color: #000000;
+  display: block;
+  margin-bottom: 4px;
+}

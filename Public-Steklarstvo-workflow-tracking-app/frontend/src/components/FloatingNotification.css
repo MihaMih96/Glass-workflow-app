@@ -1,0 +1,47 @@
+/* src/components/FloatingNotification.css */
+.floating-notification {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 1rem 1.5rem;
+    border: 2px solid black; /* črn border */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0;
+    animation: fadeInOut 2.5s forwards; /* trajanje animacije 2.5s */
+    z-index: 1000;
+  }
+  
+  .floating-notification img {
+    width: 300px; /* še večja slika */
+    height: 300px;
+  }
+  
+  .floating-notification span {
+    font-weight: bold; /* odebeljen tekst */
+  }
+  
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(20px);
+    }
+    20% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    80% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(20px);
+    }
+  }
+  

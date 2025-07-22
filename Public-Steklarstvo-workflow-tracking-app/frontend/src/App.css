@@ -1,0 +1,160 @@
+/* Osnovni stil aplikacije */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #f4f4f4;
+  font-family: Arial, sans-serif;
+}
+
+/* Glavna vsebina */
+.main-content {
+  margin-top: 60px;  /* odmik od fiksnega headerja (Header.js) */
+  padding: 40px;
+  background: #f4f4f4;
+  min-height: calc(100vh - 60px);
+  transition: margin-left 0.3s ease; /* lahko odstraniš, če ne potrebuješ animacije */
+}
+
+/* Iskalno polje */
+.search-box {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  width: 60%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Loading indikator */
+.loading {
+  text-align: center;
+  font-size: 16px;
+  color: #007bff;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Modalno okno */
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  text-align: left;
+  width: 80%;
+  max-width: 400px;
+  margin: 20px auto;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Gumbi v modalnem oknu */
+.buttons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel {
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.confirm {
+  background-color: green;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.cancel:hover {
+  background-color: darkred;
+}
+
+.confirm:hover {
+  background-color: darkgreen;
+}
+
+/* Prikaz procesiranja (loading image) */
+.processing-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.processing-image {
+  width: 350px;
+  height: auto;
+}
+
+/* Animacija utripanja */
+@keyframes blink {
+  50% {
+    opacity: 0.5;
+  }
+}
+/* Skaliraj stran na tablicah (primer za naprave med 768px in 1024px širine) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  body {
+    transform: scale(0.50);
+    transform-origin: top left;
+    width: 200%;
+    height: 200%;
+  }
+}

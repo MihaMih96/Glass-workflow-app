@@ -1,0 +1,901 @@
+/* ========================================================================
+   Globalne nastavitve in spremenljivke
+======================================================================== */
+:root {
+  --bg-color: #f4f4f4;
+  --primary-color: #007bff;
+  --primary-hover: #0056b3;
+  --cancel-color: red;
+  --cancel-hover: darkred;
+  --confirm-color: green;
+  --confirm-hover: darkgreen;
+  --modal-bg: #fff;
+  --shadow-light: rgba(0, 0, 0, 0.2);
+  --shadow-dark: rgba(0, 0, 0, 0.5);
+  --transition: 0.3s ease;
+  --font-family: Arial, sans-serif;
+}
+
+/* Globalno resetiranje in nastavitve */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: var(--bg-color);
+  font-family: var(--font-family);
+}
+
+/* ========================================================================
+   Glavna vsebina
+======================================================================== */
+.main-content {
+  margin-top: 60px; /* Odmik za fiksni header */
+  padding: 40px;
+  background-color: var(--bg-color);
+  min-height: calc(100vh - 60px);
+  transition: margin-left var(--transition);
+}
+
+/* ========================================================================
+   Iskalni polji in iskalni bar
+======================================================================== */
+.search-box,
+.search-bar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-box input,
+.search-bar input {
+  padding: 10px;
+  font-size: 16px;
+  width: 60%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color var(--transition);
+}
+
+.search-box input:focus,
+.search-bar input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.search-box button,
+.search-bar button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-box button:hover,
+.search-bar button:hover {
+  background-color: var(--primary-hover);
+}
+
+/* ========================================================================
+   Loading indikator
+======================================================================== */
+.loading {
+  text-align: center;
+  font-size: 16px;
+  color: var(--primary-color);
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* ========================================================================
+   Modalna okna
+======================================================================== */
+.modal,
+.custom-modal,
+.note-modal {
+  background-color: var(--modal-bg);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px var(--shadow-light);
+  margin: 20px auto;
+  animation: fadeIn var(--transition) ease-in-out;
+  text-align: left;
+}
+
+.modal {
+  width: 80%;
+  max-width: 400px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Gumbi v modalnih oknih */
+.buttons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel {
+  background-color: var(--cancel-color);
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.confirm {
+  background-color: var(--confirm-color);
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.cancel:hover {
+  background-color: var(--cancel-hover);
+}
+
+.confirm:hover {
+  background-color: var(--confirm-hover);
+}
+
+/* ========================================================================
+   Processing indikator
+======================================================================== */
+.processing-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 4px 10px var(--shadow-dark);
+}
+
+.processing-image {
+  width: 350px;
+  height: auto;
+}
+
+/* Animacija utripanja */
+@keyframes blink {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ========================================================================
+   Dodatni elementi
+======================================================================== */
+.workshop-container {
+  max-width: 100%;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.no-transform {
+  transform: none !important;
+  transition: none !important;
+}
+
+/* ========================================================================
+   Tabele in Excel-stil tabele
+======================================================================== */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin: 0 auto;
+}
+
+.excel-table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 15px;
+  font-size: 0.9em;
+}
+
+.table-header,
+.table-row {
+  display: grid;
+  grid-template-columns: 1fr repeat(11, 1fr) 120px 180px;
+  gap: 2px;
+}
+
+/* Sticky header */
+.table-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #fff;
+}
+
+.table-cell {
+  border: 1px solid #ccc;
+  padding: 5px;
+  text-align: center;
+  font-size: 0.85em;
+  transition: background-color var(--transition);
+  vertical-align: middle;
+}
+
+.table-cell.clickable:hover {
+  cursor: pointer;
+  transform: none !important;
+}
+
+.header {
+  font-weight: bold;
+  color: #fff;
+}
+
+.empty {
+  background: transparent;
+  border: 1px solid #ccc;
+}
+
+.name {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+.name.on-hold {
+  background-color: var(--cancel-color);
+  color: #fff;
+}
+
+.completed {
+  background-color: #2ECC71;
+}
+
+.skipped {
+  background-color: #d6d6d6;
+}
+
+.waiting {
+  background-color: #FFA500;
+}
+
+.on-hold-cell {
+  background-color: var(--cancel-color);
+  color: #fff;
+}
+
+.on-hold-cell.note-provided {
+  border: 3px solid #ccc;
+}
+
+.row-wrapper {
+  margin: 3px 0;
+  transition: border var(--transition);
+}
+
+.highlighted-row {
+  border: 4px solid var(--cancel-color);
+  border-radius: 4px;
+}
+
+.sticky-note-icon {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-size: 1.2em;
+  pointer-events: none;
+  color: yellow;
+  text-shadow: 1px 1px 2px black;
+}
+
+.deadline-cell {
+  background-color: lightgrey;
+  font-weight: bold;
+}
+
+.deadline-header {
+  background-color: grey;
+  color: #fff;
+}
+
+/* Stolpec Pripravljeno in gumbi */
+.ready-header {
+  background-color: #333;
+  color: #fff;
+}
+
+.ready-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color var(--transition);
+}
+
+.ready-button:hover {
+  background-color: #218838;
+}
+
+.ready-completed {
+  background-color: #2ECC71;
+  color: #fff;
+}
+
+.ready-completed-label {
+  font-weight: bold;
+  color: #fff;
+}
+
+.reset-ready-btn {
+  background-color: var(--cancel-color) !important;
+  color: #fff !important;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.table-cell.ready-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.no-work-orders {
+  padding: 20px;
+  font-size: 1.1em;
+  color: #555;
+}
+
+/* ========================================================================
+   Custom Modal Overlay in Modal Footer gumbi
+======================================================================== */
+.custom-modal-overlay,
+.note-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.custom-modal {
+  width: 90%;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.order-info {
+  text-align: left;
+}
+
+.order-info p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.modal-subtitle {
+  font-size: 1rem;
+  color: #666;
+}
+
+.close-button {
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #aaa;
+  transition: color var(--transition);
+}
+
+.close-button:hover {
+  color: #000;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  table-layout: fixed;
+}
+
+.product-table th,
+.product-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.product-table th:nth-child(4),
+.product-table td:nth-child(4) {
+  width: 200px;
+}
+
+.highlighted-product {
+  background-color: #e0f7fa;
+  border: 2px solid var(--primary-color);
+}
+
+.note-added {
+  border: 2px solid var(--cancel-color);
+}
+
+.note-cell {
+  color: var(--cancel-color);
+  font-weight: bold;
+}
+
+.note-button {
+  background-color: #ffc107;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.note-button:hover {
+  background-color: #e0a800;
+}
+
+.note-icon-cell {
+  text-align: center;
+}
+
+.note-provided,
+.note-provided-cell {
+  background-color: yellow !important;
+}
+
+.modal-footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.finish-button {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color var(--transition);
+}
+
+.finish-button:hover {
+  background-color: #45a049;
+}
+
+.add-note-button {
+  background-color: #ffc107;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color var(--transition);
+}
+
+.add-note-button:hover {
+  background-color: #e0a800;
+}
+
+.close-footer-button {
+  background-color: #e53935;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color var(--transition);
+}
+
+.close-footer-button:hover {
+  background-color: #d32f2f;
+}
+
+/* ========================================================================
+   Dodatni gumbi in urejevalni elementi
+======================================================================== */
+.button-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 100%;
+}
+
+.edit-column {
+  width: 40px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.edit-btn {
+  background-color: #ffc107;
+  border: none;
+  padding: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background-color: #e0a800;
+}
+
+.order-article-btn {
+  background-color: #00aced;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.order-article-btn:hover {
+  background-color: #0084b4;
+}
+
+.order-article-btn-received {
+  background-color: #ff6666;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.order-article-btn-received:hover {
+  background-color: #e65555;
+}
+
+.receive-article-btn {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.receive-article-btn:hover {
+  background-color: #218838;
+}
+
+.receive-article-btn-received {
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.finish-article-btn-green {
+  background-color: #28a745;
+  border: none;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.finish-article-btn-green:hover {
+  background-color: #218838;
+}
+
+.custom-modal .product-table th.col-kolicina,
+.custom-modal .product-table td.col-kolicina {
+  width: 70px;
+}
+
+.custom-modal .product-table th.col-dodatni-opis,
+.custom-modal .product-table td.col-dodatni-opis {
+  width: 250px;
+  color: red;
+}
+
+.custom-modal .product-table th.col-naroci-prejeto,
+.custom-modal .product-table td.col-naroci-prejeto {
+  width: 165px;
+}
+
+.custom-modal .product-table th.note-col,
+.custom-modal .product-table td.note-col {
+  width: 90px;
+}
+
+.custom-modal .product-table th.status-col,
+.custom-modal .product-table td.status-col {
+  width: 170px;
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+}
+
+.col-zakljuci {
+  width: 90px;
+}
+
+.finish-cell-green {
+  background-color: #28a745 !important;
+  color: #fff !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.col-naroci-prejeto {
+  width: 120px;
+}
+
+.order-cell-green {
+  background-color: #28a745 !important;
+  color: #fff !important;
+}
+
+.order-cell-blue {
+  background-color: #d0eaff;
+  color: #000;
+}
+
+.reset-article-btn {
+  background-color: #e53935;
+  border: none;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reset-article-btn:hover {
+  background-color: #d32f2f;
+}
+
+.user-note-cell {
+  background-color: yellow !important;
+}
+
+.custom-house-btn,
+.custom-shopping-cart-btn {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-house-btn:hover,
+.custom-shopping-cart-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.custom-house-btn svg,
+.custom-shopping-cart-btn svg {
+  font-size: 1.2em;
+  color: #000;
+}
+
+.calendar-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  color: var(--primary-color);
+  transition: color var(--transition);
+}
+
+.calendar-button:hover {
+  color: var(--primary-hover);
+}
+
+input[type="date"] {
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  background-color: #fff;
+  color: #333;
+  width: 150px;
+}
+
+input[type="date"]:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+/* ========================================================================
+   Odzivnost in prilagoditve za manjše naprave
+======================================================================== */
+@media (max-width: 1024px) {
+  .modal-dialog-scrollable,
+  .custom-modal,
+  .note-modal {
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 20px;
+  }
+  .search-box input,
+  .search-bar input {
+    width: 80%;
+  }
+  .table-header,
+  .table-row {
+    grid-template-columns: 1fr repeat(11, 1fr) 100px 140px;
+  }
+  .custom-modal {
+    width: 95%;
+  }
+}
+
+/* Slog za nov gumb z ikono spray */
+.custom-spray-btn {
+  background-color: white; /* privzeta barva gumba */
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-spray-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.custom-spray-btn svg {
+  font-size: 1.2em;
+  color: #000;
+}
+.excel-table .table-cell svg {
+  font-size: 1.2em; /* prilagodite vrednost, kot želite */
+}
+.table-cell {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+  font-size: 0.85em;
+  transition: background-color var(--transition), box-shadow var(--transition);
+  vertical-align: middle;
+  border-radius: 8px; /* Zaobljeni robovi */
+  margin: 2px; /* Majhen razmik med celicami za 'lebdenje' */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtilno sencenje */
+}
+
+.row-wrapper:not(:last-child) {
+  border-bottom: 2px solid #bcbbbb;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+.filter-buttons {
+  display: flex;           /* postavi otroke v vrstico */
+  justify-content: left; /* centriraj celoten block */
+  gap: 8px;                /* prostor med gumboma */
+  margin: 0.5rem 0;        /* po potrebi prilagodi vertikalne robove */
+}
+.filter-btn {
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  background: #007bff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.filter-btn.active {
+  background: #007bff !important;
+  border-color: #28a745 !important;
+  color: white !important;
+}
+/* naredi, da je gumb “Zaključeni” ko je aktiven zelene barve */
+.filter-btn.completed-btn {
+  background: #28a745;
+  border-color: #28a745;
+  color: white;
+}
+/* ✂️ Zmanjšaj razmik pod search-bar-om */
+.search-bar {
+  margin-bottom: 4px !important;
+}
+
+/* ✂️ Zmanjšaj razmik nad filter-buttons */
+.filter-buttons {
+  margin-top: 2px !important;
+  margin-bottom: 10px !important;
+}
+.delete-workorder-btn {
+  background: #ffebee;
+  color: #d32f2f;
+  border: none;
+  margin-left: 6px;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.delete-workorder-btn:hover {
+  background: #ffcdd2;
+}

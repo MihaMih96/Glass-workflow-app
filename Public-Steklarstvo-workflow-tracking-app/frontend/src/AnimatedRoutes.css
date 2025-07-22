@@ -1,0 +1,41 @@
+/* src/AnimatedRoutes.css */
+
+/* Animacije za swipe LEVO (nov element prihaja z desne strani, odhod proti levi strani) */
+.page-left-enter {
+  opacity: 0;
+  transform: translateX(50%);
+}
+.page-left-enter-active {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: transform 600ms ease-in-out, opacity 600ms ease-in-out;
+}
+.page-left-exit {
+  opacity: 1;
+  transform: translateX(0%);
+}
+.page-left-exit-active {
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: transform 600ms ease-in-out, opacity 600ms ease-in-out;
+}
+
+/* Animacije za swipe DESNO (nov element prihaja z leve strani, odhod proti desni strani) */
+.page-right-enter {
+  opacity: 0;
+  transform: translateX(-50%);
+}
+.page-right-enter-active {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: transform 600ms ease-in-out, opacity 600ms ease-in-out;
+}
+.page-right-exit {
+  opacity: 1;
+  transform: translateX(0%);
+}
+.page-right-exit-active {
+  opacity: 0;
+  transform: translateX(50%);
+  transition: transform 600ms ease-in-out, opacity 600ms ease-in-out;
+}
